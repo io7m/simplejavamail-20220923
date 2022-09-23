@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.io7m.bugs</groupId>
+  <artifactId>simplejavamail</artifactId>
+  <version>20220923.0.0</version>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.sanctionco.jmail</groupId>
+      <artifactId>jmail</artifactId>
+      <version>1.4.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.simplejavamail</groupId>
+      <artifactId>simple-java-mail</artifactId>
+      <version>7.5.0</version>
+      <exclusions>
+        <exclusion>
+          <groupId>com.github.bbottema</groupId>
+          <artifactId>jetbrains-runtime-annotations</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.simplejavamail</groupId>
+      <artifactId>core-module</artifactId>
+      <version>7.5.0</version>
+      <exclusions>
+        <exclusion>
+          <groupId>com.github.bbottema</groupId>
+          <artifactId>jetbrains-runtime-annotations</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.10.1</version>
+        <configuration>
+          <release>17</release>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.3.0</version>
+        <executions>
+          <execution>
+            <id>distribution</id>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <finalName>example</finalName>
+              <descriptors>
+                <descriptor>src/main/assembly/distribution.xml</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
